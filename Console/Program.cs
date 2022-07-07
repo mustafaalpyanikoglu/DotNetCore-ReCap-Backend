@@ -17,7 +17,7 @@ namespace Console
                 System.Console.WriteLine(car.Description + "  " + car.ColorId);
             }
 
-            carManager.Add(new Car {ColorId=1,BrandId=1,ModelYear = "2015", DailyPrice = 30000, Description = "Kaliteli" });
+            carManager.Add(new Car {ColorId=1,BrandId=2,ModelYear = "2022", DailyPrice = 45000, Description = "A3 Sportback" });
             System.Console.WriteLine("-----------");
             foreach (Car car in carManager.GetAll())
             {
@@ -32,6 +32,8 @@ namespace Console
             result[1].DailyPrice = 18000;
             carManager.Update(result[1]);
 
+            
+
             //foreach (var car in result)
             //{
             //    System.Console.WriteLine(car.Description + " " + car.DailyPrice);
@@ -41,7 +43,11 @@ namespace Console
             {
                 System.Console.WriteLine(car.Description + "  " + car.ColorId);
             }
-
+            System.Console.WriteLine("-----------");
+            foreach (var car in carManager.GetCarsByColorId(1))
+            {
+                System.Console.WriteLine(car.Description + "  " + car.ColorId);
+            }
         }
     }
 }
