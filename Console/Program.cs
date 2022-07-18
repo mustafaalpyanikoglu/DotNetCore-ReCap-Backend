@@ -13,19 +13,17 @@ namespace Console
         static void Main(string[] args)
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            IDataResult<List<Entities.DTOs.CarDetailDto>> result = test1(carManager);
-            test2(carManager);
-            test3(carManager);
-            test4(carManager);
-
-
+            //IDataResult<List<Entities.DTOs.CarDetailDto>> result = test1(carManager);
+            //test2(carManager);
+            //test3(carManager);
+            //test4(carManager);
 
             //foreach (var car in result)
             //{
             //    System.Console.WriteLine(car.Description + " " + car.DailyPrice);
             //}
 
-            test5(carManager);
+            /*test5(carManager);
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             var brandResult = brandManager.GetAll();
             if(brandResult.Success)
@@ -34,8 +32,54 @@ namespace Console
                 {
                     System.Console.WriteLine(brand.BrandName);
                 }
-            }
+            }*/
 
+            //AddUser();
+            //AddCustomer();
+            addRental();
+
+        }
+
+        private static void addRental()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            rentalManager.Add(new Rental
+            {
+                CarId = 5004,
+                CustomerId = 3,
+                RentDate = new DateTime(2021,9,10),
+                ReturnDate = new DateTime(2022,9,10)
+            });
+            var result = rentalManager.GetAll();
+            foreach (Rental rental in result.Data)
+            {
+                System.Console.WriteLine(rental.CarId + " " + rental.CustomerId + " " + rental.RentDate + " " + rental.ReturnDate);
+            }
+        }
+
+        private static void AddCustomer()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            customerManager.Add(new Customer
+            {
+                UserId = 2,
+                CompanyName = "Yanıkoğlu Rent A Car"
+            });
+        }
+
+        private static void AddUser()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            userManager.Add(new User { FirstName = "Mustafa", LastName = "Yanikoglu", Email = "malpyanikoglu@gmail.com", Password = "M123456" });
+            userManager.Add(new User { FirstName = "Alp", LastName = "Yanikoglu", Email = "mustafaalp58@hotmail.com", Password = "A123" });
+            userManager.Add(new User { FirstName = "Engin", LastName = "Demiroğ", Email = "engin@gmail.com", Password = "engin123" });
+            System.Console.WriteLine("-----------");
+            var result = userManager.GetAll();
+            foreach (User user in result.Data)
+            {
+                System.Console.WriteLine(user.FirstName + "  " + user.Email);
+            }
+            System.Console.WriteLine("-----------");
         }
 
         private static void test5(CarManager carManager)
