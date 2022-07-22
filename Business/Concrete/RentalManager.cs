@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Abstract;
 using Core.Utilities.Concrete;
 using DataAccess.Abstract;
@@ -21,19 +23,12 @@ namespace Business.Concrete
             _rentalDal = rentalDal;
         }
 
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            var rentalToAdd = _rentalDal.Get(r => r.CarId == rental.CarId);
-            if((rental.RentDate == null || rental.ReturnDate > rental.RentDate))
-            {
-                _rentalDal.Add(rental);
-                return new SuccessResult(Messages.CarHired);
-            }
-            else
-            {
-                return new ErrorResult(Messages.CarNotDelivered);
-            }
-            
+            _rentalDal.Add(rental);
+            return new SuccessResult(Messages.CarHired);
+
         }
 
         public IResult Delete(Rental rental)
