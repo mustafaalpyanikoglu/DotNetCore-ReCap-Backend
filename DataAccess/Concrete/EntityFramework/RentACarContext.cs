@@ -20,6 +20,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<User> Users { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Rental> Rentals { get; set; }
+        public DbSet<CarImage> CarImages { get; set; }
 
         //veritabanı tablosundaki bilgiler ile class bilgilerini eşleştiriyoruz
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -59,6 +60,12 @@ namespace DataAccess.Concrete.EntityFramework
             modelBuilder.Entity<Rental>().Property(r => r.CustomerId).HasColumnName("CustomerId");
             modelBuilder.Entity<Rental>().Property(r => r.RentDate).HasColumnName("RentDate");
             modelBuilder.Entity<Rental>().Property(r => r.ReturnDate).HasColumnName("ReturnDate");
+
+            modelBuilder.Entity<CarImage>().ToTable("CarImages");
+            modelBuilder.Entity<CarImage>().Property(c => c.Id).HasColumnName("Id");
+            modelBuilder.Entity<CarImage>().Property(c => c.CarId).HasColumnName("CarId");
+            modelBuilder.Entity<CarImage>().Property(c => c.Date).HasColumnName("Date");
+            modelBuilder.Entity<CarImage>().Property(c => c.ImagePath).HasColumnName("ImagePath");
         }
     }
 }

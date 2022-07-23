@@ -69,7 +69,7 @@ namespace Core.Utilities.Helpers.FileHelper
 
         private IResult CheckIfFileEnter(IFormFile file)
         {
-            if(file.Length<0)
+            if(file.Length < 0)
             {
                 return new ErrorResult("Dosya girilmedi");
             }
