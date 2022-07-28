@@ -70,3 +70,8 @@ C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\FluentValidation.dll
 C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
 C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\System.IO.Pipelines.dll
+C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\Microsoft.Extensions.Configuration.dll
+C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
