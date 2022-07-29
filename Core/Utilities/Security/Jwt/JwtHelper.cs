@@ -40,15 +40,16 @@ namespace Core.Utilities.Security.Jwt
         
         }
 
-        public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions,User user,SigningCredentials signingCredentials,List<OperationClaim> operationClaims)
+        public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions,User user,
+            SigningCredentials signingCredentials,List<OperationClaim> operationClaims)
         {
             var jwt = new JwtSecurityToken(
                 issuer: tokenOptions.Issuer,
                 audience: tokenOptions.Audience,
                 expires: _accessTokenExpiration,
                 notBefore: DateTime.Now,
-                claims:SetClaims(user,operationClaims),
-                signingCredentials:signingCredentials
+                claims: SetClaims(user,operationClaims),
+                signingCredentials: signingCredentials
                 );
             return jwt;
         }

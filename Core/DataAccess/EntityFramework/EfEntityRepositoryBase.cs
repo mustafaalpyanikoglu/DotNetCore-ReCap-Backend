@@ -15,46 +15,46 @@ namespace Core.DataAccess.EntityFramework
     {
         public void Add(TEntity entity)
         {
-            using (TContext rentACarContext = new TContext())
+            using (TContext context = new TContext())
             {
-                var addedEntity = rentACarContext.Entry(entity);
+                var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
-                rentACarContext.SaveChanges();
+                context.SaveChanges();
             }
         }
 
         public void Delete(TEntity entity)
         {
-            using (TContext rentACarContext = new TContext())
+            using (TContext context = new TContext())
             {
-                var deletedEntity = rentACarContext.Entry(entity);
+                var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
-                rentACarContext.SaveChanges();
+                context.SaveChanges();
             }
         }
         public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
-            using (TContext rentACarContext = new TContext())
+            using (TContext context = new TContext())
             {
-                return rentACarContext.Set<TEntity>().SingleOrDefault(filter);
+                return context.Set<TEntity>().SingleOrDefault(filter);
             }
         }
 
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
-            using (TContext rentACarContext = new TContext())
+            using (TContext context = new TContext())
             {
-                return filter == null ? rentACarContext.Set<TEntity>().ToList() : rentACarContext.Set<TEntity>().Where(filter).ToList();
+                return filter == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(filter).ToList();
             }
         }
 
         public void Update(TEntity entity)
         {
-            using (TContext rentACarContext = new TContext())
+            using (TContext context = new TContext())
             {
-                var updatedEntity = rentACarContext.Entry(entity);
+                var updatedEntity = context.Entry(entity);
                 updatedEntity.State = EntityState.Modified;
-                rentACarContext.SaveChanges();
+                context.SaveChanges();
             }
         }
     }
