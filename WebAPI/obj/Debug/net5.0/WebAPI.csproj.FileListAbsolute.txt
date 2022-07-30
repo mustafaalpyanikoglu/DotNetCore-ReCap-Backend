@@ -75,3 +75,4 @@ C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\Microsoft.Extensions.C
 C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Alp\Desktop\ReCapProject\WebAPI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll

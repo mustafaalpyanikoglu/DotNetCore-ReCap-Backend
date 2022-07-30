@@ -1,5 +1,7 @@
 using Business.Abstract;
 using Business.Concrete;
+using Core.DependencyResolvers;
+using Core.Extensions;
 using Core.IoC;
 using Core.Utilities.Security.Encyrption;
 using Core.Utilities.Security.Jwt;
@@ -42,8 +44,6 @@ namespace WebAPI
                 options.AddPolicy("AllowOrigin", builder => builder.WithOrigins("https://localhost:44395"));
             });
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -61,7 +61,9 @@ namespace WebAPI
                     };
                 });
 
-            ServiceTool.Create(services);
+            services.AddDependencyResolvers(new ICoreModule[] { 
+                new CoreModule() 
+            });
 
             services.AddSwaggerGen(c =>
             {
