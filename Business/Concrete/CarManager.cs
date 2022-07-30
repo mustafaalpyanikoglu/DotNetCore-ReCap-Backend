@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspect.Autofac;
 using Business.Constants;
+using Business.Constants.Messages;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Performance;
@@ -31,7 +32,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        [CacheAspect]
+        [CacheRemoveAspect("ICarService.Get")]
         [SecuredOperation("cars.add")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
@@ -39,13 +40,14 @@ namespace Business.Concrete
             //bısiness codes
 
             _carDal.Add(car);
-            return new SuccessResult(Messages.Added);
+            return new SuccessResult(CarMessages.CarAdded);
         }
 
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            return new SuccessResult(Messages.Deleted);
+            return new SuccessResult(CarMessages.CarDeleted);
         }
 
         
@@ -53,22 +55,22 @@ namespace Business.Concrete
         [SecuredOperation("cars.list")]
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.ProductsListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),CarMessages.CarsListed);
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(),Messages.ProductsListed);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(int brandId)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId), Messages.ProductsListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId));
         }
 
         public IDataResult<List<Car>> GetCarsByColorId(int colorId)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId), Messages.ProductsListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId));
         }
 
         [PerformanceAspect(10)]
@@ -81,7 +83,7 @@ namespace Business.Concrete
         public IResult Update(Car car)
         {
             _carDal.Update(car);
-            return new SuccessResult(Messages.Updated);
+            return new SuccessResult(CarMessages.CarUpdated);
         }
 
         [TransactionScopeAspect]

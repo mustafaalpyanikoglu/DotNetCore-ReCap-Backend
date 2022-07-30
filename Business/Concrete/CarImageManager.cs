@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.Constants.Messages;
 using Core.Utilities.Abstract;
 using Core.Utilities.Business;
 using Core.Utilities.Concrete;
@@ -44,7 +45,7 @@ namespace Business.Concrete
             carImage.Id = 0;
 
             _carImageDal.Add(carImage);
-            return new SuccessResult(Messages.Added);
+            return new SuccessResult(CarImageMessages.CarImageAdded);
         }
 
         public IResult Delete(CarImage carImage)
@@ -55,12 +56,12 @@ namespace Business.Concrete
                 return result;
             }
             _carImageDal.Delete(carImage);
-            return new SuccessResult(Messages.Deleted);
+            return new SuccessResult(CarImageMessages.CarImageDeleted);
         }
 
         public IDataResult<List<CarImage>> GetAll()
         {
-            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(), Messages.ProductsListed);
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(), CarImageMessages.CarImagesListed);
         }
 
         public IDataResult<List<CarImage>> GetByCarId(int carId)
@@ -90,14 +91,14 @@ namespace Business.Concrete
             carImage.ImagePath = result.Message;
 
             _carImageDal.Update(carImage);
-            return new SuccessResult(Messages.Updated);
+            return new SuccessResult(CarImageMessages.CarImageUpdated);
         }
         private IResult CheckIfCarImageLimitExceded(int carId)
         {
             var result = _carImageDal.GetAll(c => c.CarId == carId).Count;
             if(result>=5)
             {
-                return new ErrorResult(Messages.CarImageLimitExceded);
+                return new ErrorResult(CarImageMessages.CarImageLimitExceded);
             }
             return new SuccessResult();
         }

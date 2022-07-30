@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.Constants.Messages;
 using Core.Entities.Concrete;
 using Core.Utilities.Abstract;
 using Core.Utilities.Concrete;
@@ -29,7 +30,7 @@ namespace Business.Concrete
         {
             var claims = _userService.GetClaims(user);
             var accessToken = _tokenHelper.CreateToken(user, claims);
-            return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
+            return new SuccessDataResult<AccessToken>(accessToken, UserMessages.AccessTokenCreated);
         }
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
@@ -37,14 +38,14 @@ namespace Business.Concrete
             var userToCheck = _userService.GetByMail(userForLoginDto.Email);
             if(userToCheck == null)
             {
-                return new ErrorDataResult<User>(Messages.UserNotFound);
+                return new ErrorDataResult<User>(UserMessages.UserNotFound);
             }
 
             if(!HashingHelper.VerifyPasswordHash(userForLoginDto.Password,userToCheck.PasswordHash,userToCheck.PasswordSalt))
             {
-                return new ErrorDataResult<User>(Messages.PasswordError);
+                return new ErrorDataResult<User>(UserMessages.PasswordError);
             }
-            return new SuccessDataResult<User>(userToCheck, Messages.SuccessfulLogin);
+            return new SuccessDataResult<User>(userToCheck, UserMessages.SuccesfulLogin);
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
@@ -63,14 +64,14 @@ namespace Business.Concrete
             };
 
             _userService.Add(user);
-            return new SuccessDataResult<User>(user, Messages.UserRegistered);
+            return new SuccessDataResult<User>(user, UserMessages.UserRegistered);
         }
 
         public IResult UserExists(string email)
         {
             if(_userService.GetByMail(email) != null)
             {
-                return new ErrorResult(Messages.UserAlreadyExists);
+                return new ErrorResult(UserMessages.UserAlreadyExists);
             }
             return new SuccessResult();
         }

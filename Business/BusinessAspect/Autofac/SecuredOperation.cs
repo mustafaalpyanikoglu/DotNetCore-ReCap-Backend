@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Core.Extensions;
+using Business.Constants.Messages;
 
 namespace Business.BusinessAspect.Autofac
 {
@@ -35,7 +36,7 @@ namespace Business.BusinessAspect.Autofac
                     return;
                 }
             }
-            throw new Exception(Messages.AuthorizationDenied);
+            throw new Exception(AppMessages.AuthorizationDenied);
         }
     }
 }

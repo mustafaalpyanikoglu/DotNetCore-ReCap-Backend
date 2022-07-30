@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.Constants.Messages;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Abstract;
@@ -27,25 +28,35 @@ namespace Business.Concrete
         public IResult Add(Rental rental)
         {
             _rentalDal.Add(rental);
-            return new SuccessResult(Messages.CarHired);
+            return new SuccessResult(RentalMessages.RentalAdded);
 
         }
 
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
-            return new SuccessResult(Messages.Deleted);
+            return new SuccessResult(RentalMessages.RentalDeleted);
         }
 
         public IDataResult<List<Rental>> GetAll()
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.ProductsListed);
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), RentalMessages.RentalsListed);
         }
 
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
-            return new SuccessResult(Messages.Updated);
+            return new SuccessResult(RentalMessages.RentalUpdated);
+        }
+
+        public IDataResult<Rental> GetById(int id)
+        {
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == id));
+        }
+
+        public IDataResult<Rental> Get(Rental rental)
+        {
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == rental.Id));
         }
     }
 }

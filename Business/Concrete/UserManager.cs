@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Business.Constants.Messages;
 
 namespace Business.Concrete
 {
@@ -27,18 +28,18 @@ namespace Business.Concrete
         public IResult Add(User user)
         {
             _userDal.Add(user);
-            return new SuccessResult(Messages.Added);
+            return new SuccessResult(UserMessages.UserAdded);
         }
 
         public IResult Delete(User user)
         {
             _userDal.Delete(user);
-            return new SuccessResult(Messages.Deleted);
+            return new SuccessResult(UserMessages.UserDeleted);
         }
 
         public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.ProductsListed);
+            return new SuccessDataResult<List<User>>(_userDal.GetAll());
         }
 
         public User GetByMail(string email)
@@ -54,12 +55,7 @@ namespace Business.Concrete
         public IResult Update(User user)
         {
             _userDal.Update(user);
-            return new SuccessResult(Messages.Updated);
-        }
-
-        IDataResult<List<User>> IUserService.GetAll()
-        {
-            throw new NotImplementedException();
+            return new SuccessResult(UserMessages.UserUpdated);
         }
     }
 }

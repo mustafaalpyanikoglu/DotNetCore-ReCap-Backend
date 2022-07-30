@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.Constants.Messages;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Abstract;
@@ -27,24 +28,34 @@ namespace Business.Concrete
         public IResult Add(Customer customer)
         {
             _customerDal.Add(customer);
-            return new SuccessResult(Messages.Added);
+            return new SuccessResult(CustomerMessages.CustomerAdded);
         }
 
         public IResult Delete(Customer customer)
         {
             _customerDal.Delete(customer);
-            return new SuccessResult(Messages.Deleted);
+            return new SuccessResult(CustomerMessages.CustomerDeleted);
         }
 
         public IDataResult<List<Customer>> GetAll()
         {
-            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Messages.ProductsListed);
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), CustomerMessages.CustomersListed);
         }
 
         public IResult Update(Customer customer)
         {
             _customerDal.Update(customer);
-            return new SuccessResult(Messages.Updated);
+            return new SuccessResult(CustomerMessages.CustomerUpdated);
+        }
+
+        public IDataResult<Customer> Get(Customer customer)
+        {
+            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.CustomerId == customer.CustomerId));
+        }
+
+        public IDataResult<Customer> GetById(int id)
+        {
+            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.CustomerId == id));
         }
     }
 }

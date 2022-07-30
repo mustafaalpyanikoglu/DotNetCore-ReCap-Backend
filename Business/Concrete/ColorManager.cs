@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.Constants.Messages;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Abstract;
@@ -27,24 +28,34 @@ namespace Business.Concrete
         public IResult Add(Color color)
         {
             _colorDal.Add(color);
-            return new SuccessResult(Messages.Added);
+            return new SuccessResult(ColorMessages.ColorAdded);
         }
 
         public IResult Delete(Color color)
         {
             _colorDal.Delete(color);
-            return new SuccessResult(Messages.Deleted);
+            return new SuccessResult(ColorMessages.ColorDeleted);
         }
 
         public IDataResult<List<Color>> GetAll()
         {
-            return new DataResult<List<Color>>(_colorDal.GetAll(), true,Messages.ProductsListed);
+            return new DataResult<List<Color>>(_colorDal.GetAll(), true,ColorMessages.ColorsListed);
         }
 
         public IResult Update(Color color)
         {
             _colorDal.Update(color);
-            return new SuccessResult(Messages.Updated);
+            return new SuccessResult(ColorMessages.ColorUpdated);
+        }
+
+        public IDataResult<Color> Get(Color color)
+        {
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == color.ColorId));
+        }
+
+        public IDataResult<Color> GetById(int id)
+        {
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == id));
         }
     }
 }
