@@ -52,7 +52,7 @@ namespace Business.Concrete
 
         
         [PerformanceAspect(10)]
-        [SecuredOperation("cars.list")]
+        //[SecuredOperation("cars.list")]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(),CarMessages.CarsListed);
