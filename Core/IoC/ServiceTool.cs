@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Core.IoC
 {
+    //interface karşılığını almamızı sağlar
     public class ServiceTool
     {
-        public static IServiceProvider ServiceProvider { get; private set; }
+        public static IServiceProvider ServiceProvider { get; private set; } 
         
         public static IServiceCollection Create(IServiceCollection services)
         {

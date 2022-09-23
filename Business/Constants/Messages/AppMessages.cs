@@ -9,7 +9,7 @@ namespace Business.Constants.Messages
 {
     public static class AppMessages
     {
-        public static string MaintenanceTime = "Sistem Bakımda";
+        public static string MaintenanceTime = "Sistem Bakımda.";
         public static string AuthorizationDenied = "Yetkiniz Yok";
     }
 }

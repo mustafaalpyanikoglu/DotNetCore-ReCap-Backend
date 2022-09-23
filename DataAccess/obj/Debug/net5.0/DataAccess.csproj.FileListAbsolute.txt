@@ -15,7 +15,6 @@ C:\Users\Alp\Desktop\ReCapProject\ReCapProject\DataAccess\obj\Debug\net5.0\ref\D
 C:\Users\Alp\Desktop\ReCapProject\ReCapProject\DataAccess\obj\Debug\net5.0\DataAccess.pdb
 C:\Users\Alp\Desktop\ReCapProject\DataAccess\bin\Debug\net5.0\DataAccess.deps.json
 C:\Users\Alp\Desktop\ReCapProject\DataAccess\bin\Debug\net5.0\DataAccess.dll
-C:\Users\Alp\Desktop\ReCapProject\DataAccess\bin\Debug\net5.0\ref\DataAccess.dll
 C:\Users\Alp\Desktop\ReCapProject\DataAccess\bin\Debug\net5.0\DataAccess.pdb
 C:\Users\Alp\Desktop\ReCapProject\DataAccess\bin\Debug\net5.0\Entities.dll
 C:\Users\Alp\Desktop\ReCapProject\DataAccess\bin\Debug\net5.0\Entities.pdb
@@ -30,3 +29,4 @@ C:\Users\Alp\Desktop\ReCapProject\DataAccess\obj\Debug\net5.0\ref\DataAccess.dll
 C:\Users\Alp\Desktop\ReCapProject\DataAccess\obj\Debug\net5.0\DataAccess.pdb
 C:\Users\Alp\Desktop\ReCapProject\DataAccess\bin\Debug\net5.0\Core.dll
 C:\Users\Alp\Desktop\ReCapProject\DataAccess\bin\Debug\net5.0\Core.pdb
+C:\Users\Alp\Desktop\ReCapProject\DataAccess\obj\Debug\net5.0\refint\DataAccess.dll

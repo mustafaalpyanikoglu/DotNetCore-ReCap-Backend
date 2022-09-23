@@ -52,7 +52,7 @@ namespace Core.Utilities.Helpers.FileHelper
             string fileName = GuidHelper.GuidHelper.CreateGuid() + Path.GetExtension(file.FileName);
 
             CheckIfDirectoryExists(root);
-
+            Console.WriteLine(root + fileName);
             CreateFile(root + fileName, file);
 
             return new SuccessResult(fileName);

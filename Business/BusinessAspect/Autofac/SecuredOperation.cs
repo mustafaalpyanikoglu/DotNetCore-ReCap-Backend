@@ -11,19 +11,20 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Core.Extensions;
 using Business.Constants.Messages;
+using Business.Abstract;
 
 namespace Business.BusinessAspect.Autofac
 {
     public class SecuredOperation : MethodInterception
     {
         private string[] _roles;
-        private IHttpContextAccessor _httpContextAccessor; 
-
+        private IHttpContextAccessor _httpContextAccessor; //Jwt isteğini birden fazla kişi yapabilir her istek için bir context oluşur
+        //private ICarService _carService;
         public SecuredOperation(string roles)
         {
             _roles = roles.Split(',');
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
-
+            //_carService = ServiceTool.ServiceProvider.GetService<ICarService>(); //Windows form için
         }
 
         protected override void OnBefore(IInvocation invocation)

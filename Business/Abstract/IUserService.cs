@@ -15,5 +15,7 @@ namespace Business.Abstract
         IResult Update(User user);
         List<OperationClaim> GetClaims(User user);
         User GetByMail(string email);
+        IDataResult<User> GetUserByEmail(string email);
+
     }
 }

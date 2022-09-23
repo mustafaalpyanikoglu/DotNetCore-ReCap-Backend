@@ -67,7 +67,7 @@ namespace Business.Concrete
         public IDataResult<List<CarImage>> GetByCarId(int carId)
         {
             var result = BusinessRules.Run(CheckIfCarImageLimitExceded(carId));
-            if(!result.Success)
+            if(result != null)
             {
                 return new SuccessDataResult<List<CarImage>>(GetDefaultCarImage(carId).Data);
             }

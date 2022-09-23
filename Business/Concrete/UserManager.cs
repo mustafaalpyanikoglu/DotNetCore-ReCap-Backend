@@ -52,6 +52,19 @@ namespace Business.Concrete
             return _userDal.GetClaims(user);
         }
 
+        public IDataResult<User> GetUserByEmail(string email)
+        {
+            var result = _userDal.Get(u => u.Email == email);
+            if (result != null)
+            {
+                return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
+            }
+            else
+            {
+                return new ErrorDataResult<User>(UserMessages.UserNotFound);
+            }
+        }
+
         public IResult Update(User user)
         {
             _userDal.Update(user);
