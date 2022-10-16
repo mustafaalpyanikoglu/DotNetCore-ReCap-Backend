@@ -24,7 +24,6 @@ namespace Business.BusinessAspect.Autofac
         {
             _roles = roles.Split(',');
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
-            //_carService = ServiceTool.ServiceProvider.GetService<ICarService>(); //Windows form için
         }
 
         protected override void OnBefore(IInvocation invocation)
